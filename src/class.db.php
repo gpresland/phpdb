@@ -6,7 +6,7 @@
  * connections and transactions simpler. Currently only accepts
  * MySQL type databases.
  *
- * @author      KingFase
+ * @author      Greg Presland
  * @date        02 December 2014
  * @version     0.1.0
  */
