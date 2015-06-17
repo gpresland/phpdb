@@ -43,7 +43,7 @@ $query = "SELECT :a as a, :b as b, :c as c;";
 $binds = array(
 	array('bind' => 'a', 'value' => 'potato'),
 	array('bind' => 'b', 'value' => 'carrot'),
-	array('bind' => 'c', 'value' => 'corn',   'type' => PDO::PARAM_STR) // <- Optionally specify PDO data type
+	array('bind' => 'c', 'value' => 'corn', 'type' => PDO::PARAM_STR) // <- Optionally specify PDO data type
 );
 
 if ($results = $db->execute($query, $binds)) {
@@ -52,7 +52,7 @@ if ($results = $db->execute($query, $binds)) {
 	$a = $results[0]['a'];
 	$b = $results[0]['b'];
 	$c = $results[0]['c'];
-	
+
 	echo "{$a}, {$b}, {$c}";
 }
 ```
