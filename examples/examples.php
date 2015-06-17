@@ -42,9 +42,9 @@ $query = "SELECT :a as a, :b as b, :c as c;";
 // See: http://php.net/manual/en/pdo.constants.php
 
 $binds = array(
-	array('bind' => 'a', 'value' => 'potato', 'type' => PDO::PARAM_STR),
-	array('bind' => 'b', 'value' => 'carrot', 'type' => PDO::PARAM_STR),
-	array('bind' => 'c', 'value' => 'corn',   'type' => PDO::PARAM_STR)
+	array('bind' => 'a', 'value' => 'potato'),
+	array('bind' => 'b', 'value' => 'carrot'),
+	array('bind' => 'c', 'value' => 'corn')
 );
 
 if ($results = $db->execute($query, $binds)) {

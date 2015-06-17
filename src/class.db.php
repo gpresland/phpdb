@@ -7,8 +7,8 @@
  * MySQL type databases.
  *
  * @author      Greg Presland
- * @date        02 December 2014
- * @version     0.1.0
+ * @date        17 June 2015
+ * @version     0.2.0
  */
 
 class DB
@@ -79,6 +79,11 @@ class DB
             // Bind values to the query
             if (!empty($binds)) {
                 foreach ($binds as &$bind) {
+                    // Get bind type
+                    if (array_key_exists('type', $bind) === false) {
+                        $bind['type'] = $this->_getpdotype($bind['value']);
+                    }
+                    // Bind value to SQL statement
                     $stmt->bindValue(":{$bind['bind']}", $bind['value'], $bind['type']);
                 }
                 unset($bind);
@@ -121,5 +126,23 @@ class DB
         }
 
         return true;
+    }
+
+    /**
+     * Gets the PDO equivalent of a primitive
+     * @param mixed $value the value to be inserted into the database
+     * @return PDO::PARAM_* type equivalent of primitive
+     */
+    public function _getpdotype($value)
+    {
+        switch (gettype($value)) {
+            case 'boolean': return PDO::PARAM_BOOL;
+            case 'integer': return PDO::PARAM_INT;
+            case 'double': return PDO::PARAM_STR;
+            case 'string': return PDO::PARAM_STR;
+            case 'object': return PDO::PARAM_LOB;
+            case 'resource': return PDO::PARAM_LOB;
+            case 'NULL': return PDO::PARAM_NULL;
+        }
     }
 }
